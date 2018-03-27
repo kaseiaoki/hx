@@ -1,6 +1,3 @@
-
-let output_text :string = "";
-let index :number = 1;
 class text_write {
   output_text: string;
   text_index: number;
@@ -24,7 +21,7 @@ class EventName {
     static CLICK:string = "click";
     static MOUSE_MOVE:string = "mousemove";
 }
-function add_tags(splited:Array<string>){
+const add_tags = (splited :Array<string>)=>{
   let add_tag_text : string;
   splited.forEach(text => {
       if(text.match(hxs[hx.h2])!=null){
