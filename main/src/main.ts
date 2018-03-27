@@ -1,3 +1,4 @@
+
 let output_text :string = "";
 let index :number = 1;
 enum hx{
@@ -7,7 +8,7 @@ enum hx{
     h5
 }
 
-const hxs :Array<string>= ["\\.","\\((\\d+)\\)","[①-⑩]+","・+"];
+const hxs :Array<string>= ["\\．","\\((\\d+)\\)","[①-⑩]+","・+"];
 class EventName {
     static LOAD:string = "load";
     static CLICK:string = "click";
@@ -15,7 +16,6 @@ class EventName {
 }
 
 const doc = document.getElementById('wordbutton');
-
 doc.addEventListener(EventName.CLICK, function () {
   console.log("hogehoge");
   let input_text : string =  (<HTMLInputElement>document.getElementById("q_area")).value;
@@ -28,9 +28,10 @@ doc.addEventListener(EventName.CLICK, function () {
         text="<h3>"+text+"</h3>";
       }else if(text.match(hxs[hx.h4])!=null){
         text="<h4>"+text+"</h4>";
-      }else if(text.match(hxs[hx.h5])!=null){
-        text="<h5>"+text+"</h5>";
       }
+      // }else if(text.match(hxs[hx.h5])!=null){
+      //   text="<h5>"+text+"</h5>";
+      // }
      output_text += text+"\r";
   });
   console.log(output_text)
