@@ -1,3 +1,5 @@
+const  d1 = document.getElementById('output_area');
+
 class text_write {
   output_text: string;
   text_index: number;
@@ -6,6 +8,7 @@ class text_write {
    }
    output() {
     console.log(this.output_text);
+    d1.insertAdjacentHTML('afterend', this.output_text);
   }
 }
 enum hx{
@@ -55,6 +58,10 @@ sepa.addEventListener(EventName.CLICK, function () {
   let splited_text : Array<string>= input_text.split(/。/);
   // console.log(splited_text);
   console.log(separate_text(splited_text));
+
+  d1.insertAdjacentHTML('afterend', separate_text(splited_text));
+  // document.write(separate_text(splited_text))
+
 });
 
 class sentence_block{
@@ -62,25 +69,30 @@ class sentence_block{
   sentence: string;
   document: string;
   break_mark: string;
+  htag: string;
   constructor(){
-    this.document="\n";
+    this.document="<h2> </h2>\n";
     this.break_mark="\n\n";
     this.block=["\n"];
+    this.htag = "<h2> </h2>"
   }
   spush(s:string){
     this.block.push(s);
     if(this.block.length%3==0) {
-      console.log(this.block.length)
       this.block.push("。"+this.break_mark);
       this.document=this.block.join("");
-      this.document=this.document+"\n\n";
+    }else if(this.block.length%7==0){
+      console.log(this.block.length);
+      this.block.push(this.break_mark);
+      this.block.push(this.htag);
+      this.block.push(this.break_mark);
+
     }
   }
-
 }
 
 const separate_text = (result: Array<string>) =>{
   let sb = new sentence_block();
   result.forEach(sentence =>{sb.spush(sentence);})
-  return sb.document;
+  return sb.htag+sb.document;
 }
