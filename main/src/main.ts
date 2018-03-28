@@ -57,28 +57,30 @@ sepa.addEventListener(EventName.CLICK, function () {
   console.log(separate_text(splited_text));
 });
 
-const separate_text = (result: Array<string>) =>{
-  let break_mark :string="\n\n";
-  let document: string=" ";
-  let block: string=" ";
-  let sentence_count : number = 0;
-  let block_count : number = 0;
+class sentence_block{
+  block: Array<string>;
+  sentence: string;
+  document: string;
+  break_mark: string;
+  constructor(){
+    this.document="\n";
+    this.break_mark="\n\n";
+    this.block=["\n"];
+  }
+  spush(s:string){
+    this.block.push(s);
+    if(this.block.length%3==0) {
+      console.log(this.block.length)
+      this.block.push("。"+this.break_mark);
+      this.document=this.block.join("");
+      this.document=this.document+"\n\n";
+    }
+  }
 
-  result.forEach(sentence =>{
-      sentence +="．";
-      block += sentence;
-      if(sentence_count == 2){
-        block += break_mark;
-        document += block;
-        block = "";
-        sentence_count = 0;
-        block_count++;
-        if(block_count==2){
-          block +="<h2></h2>\n";
-          block_count=0;
-        }
-      }
-      sentence_count++;
-  })
-  return document;
+}
+
+const separate_text = (result: Array<string>) =>{
+  let sb = new sentence_block();
+  result.forEach(sentence =>{sb.spush(sentence);})
+  return sb.document;
 }
