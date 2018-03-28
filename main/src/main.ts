@@ -64,6 +64,12 @@ sepa.addEventListener(EventName.CLICK, function () {
 
 });
 
+const clear = document.getElementById('clearbutton');
+clear.addEventListener(EventName.CLICK, function () {
+   let area_text =  (<HTMLInputElement>document.getElementById("q_area"));
+   area_text.value = "";
+});
+
 class sentence_block{
   block: Array<string>;
   sentence: string;
