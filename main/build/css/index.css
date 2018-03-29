@@ -42,9 +42,17 @@
   top: 40px;
   right: 60px;
 }
+#sepabutton{
+  position: relative;
+  top: 5px;
+}
+#clearbutton{
+  position: relative;
+  top: 5px;
+}
 #wordbutton{
   position: relative;
-  top: 10px;
+  top: 5px;
 }
 #question{
   position: relative;
@@ -59,7 +67,11 @@
   position: relative;
   top: 20px;
 }
-#see_results{
+#finishbutton{
   position: relative;
   top: 70px;
 }
+/* #output_area{
+  position: relative;
+  top: 100px;
+} */
