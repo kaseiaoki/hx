@@ -23,6 +23,7 @@ class EventName {
     static LOAD:string = "load";
     static CLICK:string = "click";
     static MOUSE_MOVE:string = "mousemove";
+    static ON_MouseUp:string = "onMouseOut"
 }
 const add_tags = (splited :Array<string>)=>{
   let add_tag_text : string;
@@ -102,3 +103,54 @@ const separate_text = (result: Array<string>) =>{
   result.forEach(sentence =>{sb.spush(sentence);})
   return sb.htag+sb.document;
 }
+
+enum tasks{
+  hero,
+  break,
+  marking,
+  photo,
+  category,
+}
+class notifications {
+  notification: HTMLElement;
+
+  constructor() {
+    this.notification = document.getElementById("done_notification");
+  }
+   in_visible(){
+     let style = this.notification.style;
+     style.visibility = 'hidden';
+     let checks =  document.getElementsByName("done");
+     checks[string_index[tasks.hero]].checked=false;
+     checks[string_index[tasks.break]].checked=false;
+     checks[string_index[tasks.marking]].checked=false;
+     checks[string_index[tasks.photo]].checked=false;
+     checks[string_index[tasks.category]].checked=false;
+  }
+  visible(){
+    let style = this.notification.style;
+    style.visibility = 'visible';
+  }
+}
+
+const delete_notification = document.getElementById('delete-button');
+delete_notification.addEventListener(EventName.CLICK, function () {
+    let dn = new notifications();
+    dn.in_visible();
+});
+
+const string_index = ['0','1','2','3','4','5']
+
+const task_d = document.getElementById('task_done');
+task_d.addEventListener(EventName.CLICK, function () {
+  let checks =  document.getElementsByName("done");
+  console.log(checks[string_index[tasks.hero]].checked);
+  if(checks[string_index[tasks.hero]].checked==true&&checks[string_index[tasks.break]].checked==true&&checks[string_index[tasks.marking]].checked==true
+    &&checks[string_index[tasks.photo]].checked==true&&checks[string_index[tasks.category]].checked==true){
+    let an = new notifications();
+    an.visible();
+  }
+});
+
+// var filename_ex="url".match(".+/(.+?)$")[1]
+// var filename_ex="url".match(".+/(.+?)\.[a-z]+$")[1]
