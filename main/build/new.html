@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://use.fontawesome.com/0f942f413c.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bulma-extensions@1.0.14/dist/extensions.sass" crossorigin="sass">
   <link rel="stylesheet" type="text/css" href="css/index.css">
   </script>
   <style>
@@ -28,20 +29,41 @@
           <article class="tile is-child box">
             <div>
               <h1 class="title">style samples</h1>
-              <p style="color:red; font-weight: bold">"style="color:red; font-weight: bold"</p>
-              <p><span style="background: linear-gradient(transparent 50%, yellow 50%); font-weight: bold">"style="background: linear-gradient(transparent 50%, yellow 50%); font-weight: bold"</span></p>
+              <p style="color:red; font-weight: bold">"style="color:red; font-weight: bold;"</p>
+              <p><span style="background: linear-gradient(transparent 50%, yellow 50%); font-weight: bold;">"style="background: linear-gradient(transparent 50%, yellow 50%); font-weight: bold"</span></p>
               <p><span style="border-bottom: solid 2px orange;">"style="border-bottom: solid 2px orange;"</span></p>
-              <p><span style="border-bottom: solid 2px lightblue; font-weight: bold">"style="border-bottom: solid 2px lightbule; font-weight: bold"</span></p>
+              <p><span style="border-bottom: solid 2px lightblue; font-weight: bold;">"style="border-bottom: solid 2px lightbule; font-weight: bold;"</span></p>
               <p><span style="border-bottom: dotted 2px tomato;">"style="border-bottom: dotted 2px tomato;"</span></p>
               <p><span style="border-bottom: dashed 1px limegreen;">"style="border-bottom: dashed 1px #87CEFA;"</span></p>
-
-
            </div>
           </article>
-          <article class="tile is-child box">
+          <article id="task_done" class="tile is-child box">
+           <h1 class="title">task checklist</h1>
+           <div class="columns">
 
-          </article>
-        </div>
+              <!-- <p >visibility:hidden</p> -->
+             <div class="column is-4">
+               <form id="checks">
+                  <p><input type="checkbox" name="done" />add hero</p>
+                  <p><input type="checkbox" name="done" />fix break </p>
+                  <p><input type="checkbox" name="done" />add marking</p>
+                  <p><input type="checkbox" name="done" />add photo</p>
+                  <p><input type="checkbox" name="done" />fix category</p>
+              </form>
+            </div>
+            <div class="column is-8">
+                <div id="done_notification" style="visibility:hidden" class="notification">
+                  <button id="delete-button" class="delete"></button>
+                  <div><strong>Decoration was done!</strong>
+                  <span class="icon has-text-success is-learge">
+                    <i class="fa fa-check-square"></i>
+                  </span>
+                </div>
+                  But, since you just checked by eye observation, let the person in charge <strong>confirm it at once!</strong>
+                </div>
+            </div>
+        </article>
+      </div>
       </div>
     </div>
     <div class="tile is-parent">
@@ -55,9 +77,9 @@
                   <span class="icon is-small is-left"></i>
                 </div>
               </div>
-          <button id="wordbutton" class="button is-success is-medium  fa fa-tags">　Add some tags</button>
-          <button id="sepabutton" class="button is-info is-medium  fa fa-th-large">　Block separate</button>
-          <button id="clearbutton" class="button is-danger is-medium  fa fa-th-large">　Clear document</button>
+          <button id="wordbutton" class="button is-success is-outlined is-medium  fa fa-tags">　Add some tags</button>
+          <button id="sepabutton" class="button is-info is-outlined is-medium  fa fa-th-large">　Block separate</button>
+          <button id="clearbutton" class="button is-danger is-outlined is-medium  fa fa-th-large">　Clear document</button>
           </div>
         </div>
       </article>
