@@ -15,21 +15,28 @@ enum hx{
     h2,
     h3,
     h4,
-    h5
+    h5,
+    h2_alt,
 }
 
-const hxs :Array<string>= ["\\．","\\((\\d+)\\)","[①-⑩]+","・+"];
+const hxs :Array<string>= ["\\．","\\((\\d+)\\)","[①-⑩]+","・+","\\．\\d*ー"];
 class EventName {
     static LOAD:string = "load";
     static CLICK:string = "click";
     static MOUSE_MOVE:string = "mousemove";
     static ON_MouseUp:string = "onMouseOut"
 }
+
 const add_tags = (splited :Array<string>)=>{
   let add_tag_text : string;
   splited.forEach(text => {
       if(text.match(hxs[hx.h2])!=null){
-        add_tag_text +="<h2>"+text+"</h2>";
+        text=bar_case_find(text)
+        if(text!=null){
+          add_tag_text+=text;
+        }else{
+          add_tag_text +="<h2>"+text+"</h2>";
+        }
       }else if(text.match(hxs[hx.h3])!=null){
         add_tag_text +="<h3>"+text+"</h3>";
       }else if(text.match(hxs[hx.h4])!=null){
@@ -37,12 +44,27 @@ const add_tags = (splited :Array<string>)=>{
       }else{
         add_tag_text +=text+"\r";
       }
-      // }else if(text.match(hxs[hx.h5])!=null){
-      //   text="<h5>"+text+"</h5>";
-      // }
   })
     return add_tag_text;
 }
+
+const bar_case_find = (text: string) =>{
+  let count : number = 0;
+  let result_index =text.indexOf('ー');
+  while (result_index !== -1) {
+    count++;
+    result_index = text.indexOf('ー', result_index + 1);
+  }
+  if(count!==null&&count!==-1){
+    switch(count) {
+      case 0: text="<h2>"+text+"</h2>" ; return text;
+      case 1: text="<h3>"+text+"</h3>"; return text;
+      case 2:  text="<h4>"+text+"</h4>"; return text;
+      default: return null;
+    }
+  }
+}
+
 
 const doc = document.getElementById('wordbutton');
 doc.addEventListener(EventName.CLICK, function () {
@@ -64,7 +86,6 @@ sepa.addEventListener(EventName.CLICK, function () {
   // document.write(separate_text(splited_text))
 
 });
-
 const clear = document.getElementById('clearbutton');
 clear.addEventListener(EventName.CLICK, function () {
    let area_text =  (<HTMLInputElement>document.getElementById("q_area"));
