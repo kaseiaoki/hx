@@ -183,3 +183,29 @@ task_d.addEventListener(EventName.CLICK, function () {
 
 // var filename_ex="url".match(".+/(.+?)$")[1]
 // var filename_ex="url".match(".+/(.+?)\.[a-z]+$")[1]
+
+const swapArray = <P>(ary: P[], index1: number, index2: number): P[] => {
+  const [frontIndex, backIndex] =
+    (index1 < index2) ? [index1, index2] : [index2, index1];
+
+  if (frontIndex < 0 || ary.length <= backIndex) {
+      throw new RangeError();
+  }
+
+  if (frontIndex == backIndex) {
+      return ary;
+  }
+
+  const frontValue = ary[frontIndex]
+  const backValue = ary[backIndex]
+  const frontward = ary.slice(0, frontIndex)
+  const middle = ary.slice(frontIndex + 1, backIndex)
+  const backward = ary.slice(backIndex + 1, ary.length)
+
+  return [
+      ...frontward,
+      backValue,
+      ...middle,
+      frontValue,
+      ...backward]
+}
